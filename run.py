@@ -25,6 +25,12 @@ LEGS = WORKOUTS.col_values(5)
 def welcome():
    #Grab the workout names from the google sheet
    workout_names = WORKOUTS.row_values(1)
+   print("Welcome to the Python Fitness Console!")
+   print("Please select a workout from the options below:")
+   # show workout options from google sheets
+   for i, workout in enumerate(workout_names, start=1):
+       print(f"{i}. {workout}")
+    
 
 
 
