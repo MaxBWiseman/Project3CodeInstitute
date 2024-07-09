@@ -21,7 +21,11 @@ ARMS = WORKOUTS.col_values(2)
 CHEST = WORKOUTS.col_values(3)
 SHOULDERS = WORKOUTS.col_values(4)
 LEGS = WORKOUTS.col_values(5)
-print(value)
+
+def welcome():
+   #Grab the workout names from the google sheet
+   workout_names = WORKOUTS.row_values(1)
+
 
 
 
