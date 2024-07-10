@@ -22,6 +22,29 @@ CHEST = WORKOUTS.col_values(3)
 SHOULDERS = WORKOUTS.col_values(4)
 LEGS = WORKOUTS.col_values(5)
 
+
+
+
+
+
+
+
+def grab_exercises(data):
+#using data to grab the correct exercises from the google sheet
+    exercises = WORKOUTS.col_values(data)
+#skip column name
+    exercises = exercises[1:]
+    print(f"Exercises for {WORKOUTS.cell(1, data).value}:")
+#simple loop for iteration
+    for exercise in exercises:
+        print(exercise)
+
+
+
+
+
+
+
 def welcome():
 #Grab the workout names from the google sheet and store them in a variable
     workout_names = WORKOUTS.row_values(1)
@@ -38,17 +61,3 @@ def welcome():
         grab_exercises(user_input)
     else:
         print("Invalid input. Please try again.")
-
-    
-       
-       
-       
-def grab_exercises(data):
-#using data to grab the correct exercises from the google sheet
-    exercises = WORKOUTS.col_values(data)
-#skip column name
-    exercises = exercises[1:]
-    print(f"Exercises for {WORKOUTS.cell(1, data).value}:")
-#simple loop for iteration
-    for exercise in exercises:
-        print(exercise)
