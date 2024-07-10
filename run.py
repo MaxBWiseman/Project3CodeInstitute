@@ -46,3 +46,9 @@ def welcome():
 def grab_exercises(data):
 #using data to grab the correct exercises from the google sheet
     exercises = WORKOUTS.col_values(data)
+#skip column name
+    exercises = exercises[1:]
+    print(f"Exercises for {WORKOUTS.cell(1, data).value}:")
+#simple loop for iteration
+    for exercise in exercises:
+        print(exercise)
