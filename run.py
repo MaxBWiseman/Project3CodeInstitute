@@ -56,8 +56,8 @@ def get_repetitions(column_index, number_of_reps, exercise_names):
     if not reps or len(reps) < number_of_reps:
 #if first time or no data, ask for reps   
         reps = []
-        for i in range(number_of_reps):
-            initial_rep = int(input(f"Enter the number of repetitions for exercise {i+1}:\n"))
+        for i, exercise_name in enumerate(exercise_names , start=1):
+            initial_rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
             reps.append(initial_rep)
         #update the google sheet with the reps
         update_rep_sheet(column_index, reps)
