@@ -23,14 +23,13 @@ REPETITIONS = SHEET.worksheet("Repetitions")
 
 def grab_exercises(data):
 #using data to grab the correct exercises from the google sheet
-    exercises = WORKOUTS.col_values(data)
-#skip column name
-    exercises = exercises[1:]
+    exercises = WORKOUTS.col_values(data)[1:]
+
     print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
 #simple loop for iteration
     for exercise in exercises:
         print(exercise)
-    get_repetitions(exercises)
+    #get_repetitions(exercises)
 
 
 
@@ -56,18 +55,8 @@ def welcome():
         print("Invalid input. Please try again.")
         
 
-def get_repetitions(exercise):
-    repetitions = REPETITIONS.row_values(1)
-    print(f"Please select the number of repetitions for {exercise}:\n")
-    for i, rep in enumerate(repetitions, start=1):
-        print(f"{i}. {rep}")
-    user_input = int(input("Enter the number of repetitions you would like to do:\n "))
-    if 1 <= user_input <= len(repetitions):
-        print(f"Great! You have selected {repetitions[user_input-1]} repetitions.\n")
-    else:
-        print("Invalid input. Please try again.")
-        get_repetitions(exercise)
-  
+#def get_repetitions(exercise):
+   
 
 
 
