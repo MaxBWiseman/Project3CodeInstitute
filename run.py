@@ -24,12 +24,13 @@ REPETITIONS = SHEET.worksheet("Repetitions")
 def grab_exercises(data):
 #using data to grab the correct exercises from the google sheet
     exercises = WORKOUTS.col_values(data)[1:]
-
     print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
-#simple loop for iteration
-    for exercise in exercises:
-        print(exercise)
-    #get_repetitions(exercises)
+#using the get_repetitions function to grab the repetitions for the exercises
+    repetitions = get_repetitions(data, len(exercises))
+#using the zip function to combine the exercises and repetitions into a single list
+    for exercise, rep in zip(exercises, repetitions):
+        print(f"{exercise} - {rep} repetitions")
+    
 
 
 
@@ -56,18 +57,3 @@ def welcome():
         
 
 #def get_repetitions(exercise):
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-welcome()
