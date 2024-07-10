@@ -56,4 +56,13 @@ def welcome():
         print("Invalid input. Please try again.")
         
 
-#def get_repetitions(exercise):
+def get_repetitions(column_index, number_of_reps):
+#check if already set reps once
+    reps = REPETITIONS.col_values(column_index)[1:]
+    if not reps or len(reps) < number_of_reps:
+#if first time or no data, ask for reps   
+        reps = []
+        for i in range(number_of_reps):
+            initial_rep = int(input(f"Enter the number of repetitions for exercise {i+1}:\n"))
+            reps.append(initial_rep)
+        
