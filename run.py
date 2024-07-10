@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import gspread.utils
 
 
 SCOPE = [
@@ -38,7 +39,7 @@ def grab_exercises(data):
 
 
 
-def welcome():
+#def welcome():
 #Grab the workout names from the google sheet and store them in a variable
     workout_names = WORKOUTS.row_values(1)
     print("Welcome to the Python Fitness Console!\n")
@@ -65,4 +66,17 @@ def get_repetitions(column_index, number_of_reps):
         for i in range(number_of_reps):
             initial_rep = int(input(f"Enter the number of repetitions for exercise {i+1}:\n"))
             reps.append(initial_rep)
-        
+            
+            
+            
+#I asked microsoft co pilot for help with this function, it suggested the following code
+def update_rep_sheet(column_index, reps):
+#Convert column index to corresponding A1 notation column letter
+    column_letter = gspread.utils.rowcol_to_a1(1, column_index)[0]
+     # Prepare the range string for the update, assuming repetitions start from row 2
+    range_to_update = f"{REPETITIONS.title}!{column_letter}2:{column_letter}{1 + len(reps)}"
+    # Prepare the data in the format expected by the update method (list of lists)
+    values_to_update = [[rep] for rep in reps]
+    # Update the sheet
+    REPETITIONS.update(range_to_update, values_to_update)
+#I learned from this what rowcol_to_a1 does from gspread  
