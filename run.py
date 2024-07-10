@@ -16,14 +16,6 @@ SHEET = GSPREAD_CLIENT.open("PythonFitnessConsole")
 WORKOUTS = SHEET.worksheet("Workouts")
 REPETITIONS = SHEET.worksheet("Repetitions")
 
-BACK = WORKOUTS.col_values(1)
-ARMS = WORKOUTS.col_values(2)
-CHEST = WORKOUTS.col_values(3)
-SHOULDERS = WORKOUTS.col_values(4)
-LEGS = WORKOUTS.col_values(5)
-
-
-
 
 
 
@@ -34,7 +26,7 @@ def grab_exercises(data):
     exercises = WORKOUTS.col_values(data)
 #skip column name
     exercises = exercises[1:]
-    print(f"Exercises for {WORKOUTS.cell(1, data).value}:")
+    print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
 #simple loop for iteration
     for exercise in exercises:
         print(exercise)
@@ -57,7 +49,9 @@ def welcome():
     user_input = int(input("Enter the number of the muscle group you would like to do:\n "))
 #this line checks the user_input is within the range of the workout_names list, valid range is 1 to the length of the list
     if 1 <= user_input <= len(workout_names):
-        print(f"Great! You have selected the {workout_names[user_input-1]} muscle group.")
+        print(f"Great! You have selected the {workout_names[user_input-1]} muscle group.\n")
         grab_exercises(user_input)
     else:
         print("Invalid input. Please try again.")
+        
+welcome()
