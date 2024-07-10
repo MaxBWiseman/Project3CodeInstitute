@@ -15,6 +15,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("PythonFitnessConsole")
 WORKOUTS = SHEET.worksheet("Workouts")
 REPETITIONS = SHEET.worksheet("Repetitions")
+WEIGHTS = SHEET.worksheet("Weights")
 
 
 
@@ -53,6 +54,9 @@ def welcome():
 def get_repetitions(column_index, number_of_reps, exercise_names):
 #check if already set reps once
     reps = REPETITIONS.col_values(column_index)[1:]
+#Want to refactor this code to also include weights
+    weights = WEIGHTS.col_values(column_index)[1:]
+    
     if not reps or len(reps) < number_of_reps:
 #if first time or no data, ask for reps   
         reps = []
@@ -86,6 +90,17 @@ def update_rep_sheet(column_index, reps):
     # Update the sheet
     REPETITIONS.update(values_to_update, range_to_update)
 #I learned from this what rowcol_to_a1 does from gspread
+
+
+
+
+
+
+
+
+
+
+
 
 
 #My code wouldent start in console, after reasearch i found that my code doesnt automatically execute because the call is at global level.
