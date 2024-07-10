@@ -80,12 +80,12 @@ def get_repetitions(column_index, number_of_reps):
 def update_rep_sheet(column_index, reps):
 #Convert column index to corresponding A1 notation column letter
     column_letter = gspread.utils.rowcol_to_a1(1, column_index)[0]
-     # Prepare the range string for the update, assuming repetitions start from row 2
-    range_to_update = f"{REPETITIONS.title}!{column_letter}2:{column_letter}{1 + len(reps)}"
+     # Prepare the range string for the update, e.g. "A2:A5"
+    range_to_update = f"{column_letter}2:{column_letter}{1 + len(reps)}"
     # Prepare the data in the format expected by the update method (list of lists)
     values_to_update = [[rep] for rep in reps]
     # Update the sheet
-    REPETITIONS.update(range_to_update, values_to_update)
+    REPETITIONS.update(values_to_update, range_to_update)
 #I learned from this what rowcol_to_a1 does from gspread
 
 
