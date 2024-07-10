@@ -39,7 +39,7 @@ def grab_exercises(data):
 
 
 
-#def welcome():
+def welcome():
 #Grab the workout names from the google sheet and store them in a variable
     workout_names = WORKOUTS.row_values(1)
     print("Welcome to the Python Fitness Console!\n")
@@ -66,6 +66,13 @@ def get_repetitions(column_index, number_of_reps):
         for i in range(number_of_reps):
             initial_rep = int(input(f"Enter the number of repetitions for exercise {i+1}:\n"))
             reps.append(initial_rep)
+        #update the google sheet with the reps
+        update_rep_sheet(column_index, reps)
+    else:
+        #if reps already set, increment reps to simulate muscle growth
+        reps = [int(rep) + 1 for rep in reps]
+        update_rep_sheet(column_index, reps)
+    return reps
             
             
             
@@ -79,4 +86,10 @@ def update_rep_sheet(column_index, reps):
     values_to_update = [[rep] for rep in reps]
     # Update the sheet
     REPETITIONS.update(range_to_update, values_to_update)
-#I learned from this what rowcol_to_a1 does from gspread  
+#I learned from this what rowcol_to_a1 does from gspread
+
+
+#My code wouldent start in console, after reasearch i found that my code doesnt automatically execute because the call is at global level.
+#I then reasearched different ways to fix this problem and found this video https://www.youtube.com/watch?v=g_wlZ9IhbTs - at 2:37 he explains how to fix this problem
+if __name__ == "__main__":
+    welcome()
