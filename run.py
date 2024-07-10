@@ -13,7 +13,6 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("PythonFitnessConsole")
-
 WORKOUTS = SHEET.worksheet("Workouts")
 REPETITIONS = SHEET.worksheet("Repetitions")
 
@@ -27,17 +26,11 @@ def grab_exercises(data):
     exercises = WORKOUTS.col_values(data)[1:]
     print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
 #using the get_repetitions function to grab the repetitions for the exercises
-    repetitions = get_repetitions(data, len(exercises))
+    repetitions = get_repetitions(data, len(exercises), exercises)
 #using the zip function to combine the exercises and repetitions into a single list
     for exercise, rep in zip(exercises, repetitions):
         print(f"{exercise} - {rep} repetitions")
     
-
-
-
-
-
-
 
 def welcome():
 #Grab the workout names from the google sheet and store them in a variable
@@ -57,7 +50,7 @@ def welcome():
         print("Invalid input. Please try again.")
         
 
-def get_repetitions(column_index, number_of_reps):
+def get_repetitions(column_index, number_of_reps, exercise_names):
 #check if already set reps once
     reps = REPETITIONS.col_values(column_index)[1:]
     if not reps or len(reps) < number_of_reps:
