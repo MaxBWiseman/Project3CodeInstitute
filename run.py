@@ -35,13 +35,14 @@ def welcome():
 #this line checks the user_input is within the range of the workout_names list, valid range is 1 to the length of the list
     if 1 <= user_input <= len(workout_names):
         print(f"Great! You have selected the {workout_names[user_input-1]} muscle group.")
+        grab_exercises(user_input)
     else:
         print("Invalid input. Please try again.")
+
     
        
-welcome()
-    
-
-
-
-
+       
+       
+def grab_exercises(data):
+#using data to grab the correct exercises from the google sheet
+    exercises = WORKOUTS.col_values(data)
