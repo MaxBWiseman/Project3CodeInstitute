@@ -86,26 +86,33 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
     had to swap around my "range_to_update" and "values_to_update" variables on line 88
     """
 def update_rep_sheet(column_index, reps):
-#Convert column index to corresponding A1 notation column letter
-    column_letter = gspread.utils.rowcol_to_a1(1, column_index)[0]
+    try:
+    #Convert column index to corresponding A1 notation column letter
+        column_letter = gspread.utils.rowcol_to_a1(1, column_index)[0]
      # Prepare the range string for the update, e.g. "A2:A5"
-    range_to_update = f"{column_letter}2:{column_letter}{1 + len(reps)}"
+        range_to_update = f"{column_letter}2:{column_letter}{1 + len(reps)}"
     # Prepare the data in the format expected by the update method (list of lists)
-    values_to_update = [[rep] for rep in reps]
+        values_to_update = [[rep] for rep in reps]
     # Update the sheet
-    REPETITIONS.update(values_to_update, range_to_update)
+        REPETITIONS.update(values_to_update, range_to_update)
 #I learned from this what rowcol_to_a1 does from gspread
+    except GSpreadException as e:
+    
 
 #copied last function and changed slighty to update the weights sheet instead
 def update_weight_sheet(column_index, weights):
-#Convert column index to corresponding A1 notation column letter
-    column_letter = gspread.utils.rowcol_to_a1(1, column_index)[0]
+    try:
+    #Convert column index to corresponding A1 notation column letter
+        column_letter = gspread.utils.rowcol_to_a1(1, column_index)[0]
      # Prepare the range string for the update, e.g. "A2:A5"
-    range_to_update = f"{column_letter}2:{column_letter}{1 + len(weights)}"
+        range_to_update = f"{column_letter}2:{column_letter}{1 + len(weights)}"
     # Prepare the data in the format expected by the update method (list of lists)
-    values_to_update = [[weights] for weights in weights]
+        values_to_update = [[weights] for weights in weights]
     # Update the sheet
-    WEIGHTS.update(values_to_update, range_to_update)
+        WEIGHTS.update(values_to_update, range_to_update)
+        
+    except GSpreadException as e:
+        
 
 
 
