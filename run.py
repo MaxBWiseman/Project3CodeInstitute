@@ -1,6 +1,8 @@
+import logging
 import gspread
 from google.oauth2.service_account import Credentials
 import gspread.utils
+from gspread.exceptions import GSpreadException
 
 
 SCOPE = [
@@ -97,6 +99,9 @@ def update_rep_sheet(column_index, reps):
         REPETITIONS.update(values_to_update, range_to_update)
 #I learned from this what rowcol_to_a1 does from gspread
     except GSpreadException as e:
+        logging.error(f"Failed to update the Repetitions sheet: {e}")
+    except Exception as e:
+        logging.error(f"An error occurred whilst updating: {e}")
     
 
 #copied last function and changed slighty to update the weights sheet instead
@@ -112,6 +117,9 @@ def update_weight_sheet(column_index, weights):
         WEIGHTS.update(values_to_update, range_to_update)
         
     except GSpreadException as e:
+        logging.error(f"Failed to update the Weights sheet: {e}")
+    except Exception as e:
+        logging.error(f"An error occurred whilst updating: {e}")
         
 
 
