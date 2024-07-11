@@ -28,10 +28,10 @@ def grab_exercises(data):
     exercises = WORKOUTS.col_values(data)[1:]
     print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
 #using the get_repetitions function to grab the repetitions for the exercises
-    repetitions = get_repetitions(data, len(exercises), exercises)
+    repetitions, weights = get_repetitions(data, len(exercises), exercises)
 #using the zip function to combine the exercises and repetitions into a single list
-    for exercise, rep in zip(exercises, repetitions):
-        print(f"{exercise} - {rep} repetitions")
+    for exercise, rep, weight in zip(exercises, repetitions, weights):
+        print(f"{exercise} - {rep} repetitions - {weight} kg\n")
     
 
 def welcome():
@@ -96,6 +96,7 @@ def update_rep_sheet(column_index, reps):
     REPETITIONS.update(values_to_update, range_to_update)
 #I learned from this what rowcol_to_a1 does from gspread
 
+#copied last function and changed slighty to update the weights sheet instead
 def update_weight_sheet(column_index, weights):
 #Convert column index to corresponding A1 notation column letter
     column_letter = gspread.utils.rowcol_to_a1(1, column_index)[0]
