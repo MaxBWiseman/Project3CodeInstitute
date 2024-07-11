@@ -67,14 +67,15 @@ def get_repetitions(column_index, number_of_exercises, exercise_names):
             weight = int(input(f"Enter the weight for {exercise_name} in kg:\n"))
             reps.append(rep)
             weights.append(weight)
-        #update the google sheet with the reps
-        update_rep_sheet(column_index, reps)
     else:
         #if reps already set, increment reps to simulate muscle growth
         reps = [int(rep) + 1 for rep in reps]
-        update_rep_sheet(column_index, reps)
-    return reps
-            
+        #if weights already set, increment weights to simulate muscle growth
+        weights = [int(weight) + int(weight) * 0.05 for weight in weights] # %5 increase in weight
+
+    update_rep_sheet(column_index, reps)
+    #update_weight_sheet(column_index, weights)
+    return reps, weights
             
             
 #I asked microsoft co pilot for help with this function, it suggested the following code (had to refactor as code did not fully work)
