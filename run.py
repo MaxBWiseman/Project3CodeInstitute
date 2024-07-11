@@ -28,7 +28,7 @@ def grab_exercises(data):
     exercises = WORKOUTS.col_values(data)[1:]
     print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
 #using the get_repetitions function to grab the repetitions for the exercises
-    repetitions, weights = get_repetitions(data, len(exercises), exercises)
+    repetitions, weights = get_repetitions_weights(data, len(exercises), exercises)
 #using the zip function to combine the exercises and repetitions into a single list
     for exercise, rep, weight in zip(exercises, repetitions, weights):
         print(f"{exercise} - {rep} repetitions - {weight} kg\n")
@@ -52,7 +52,7 @@ def welcome():
         print("Invalid input. Please try again.")
         
 
-def get_repetitions(column_index, number_of_exercises, exercise_names):
+def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #check if already set reps and weights once
     reps = REPETITIONS.col_values(column_index)[1:]
 #Want to refactor this code to also include weights
