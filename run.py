@@ -24,6 +24,7 @@ WEIGHTS = SHEET.worksheet("Weights")
 
 def grab_exercises(data):
 #using data to grab the correct exercises from the google sheet
+#skips the first row as it is the title
     exercises = WORKOUTS.col_values(data)[1:]
     print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
 #using the get_repetitions function to grab the repetitions for the exercises
@@ -51,18 +52,21 @@ def welcome():
         print("Invalid input. Please try again.")
         
 
-def get_repetitions(column_index, number_of_reps, exercise_names):
-#check if already set reps once
+def get_repetitions(column_index, number_of_exercises, exercise_names):
+#check if already set reps and weights once
     reps = REPETITIONS.col_values(column_index)[1:]
 #Want to refactor this code to also include weights
     weights = WEIGHTS.col_values(column_index)[1:]
     
-    if not reps or len(reps) < number_of_reps:
+    if not reps or len(reps) < number_of_exercises:
 #if first time or no data, ask for reps   
         reps = []
-        for i, exercise_name in enumerate(exercise_names , start=1):
-            initial_rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
-            reps.append(initial_rep)
+        weights = []
+        for exercise_name in exercise_names:
+            rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
+            weight = int(input(f"Enter the weight for {exercise_name} in kg:\n"))
+            reps.append(rep)
+            weights.append(weight)
         #update the google sheet with the reps
         update_rep_sheet(column_index, reps)
     else:
