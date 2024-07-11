@@ -49,6 +49,7 @@ def welcome():
 #this line checks the user_input is within the range of the workout_names list, valid range is 1 to the length of the list
     if 1 <= user_input <= len(workout_names):
         print(f"Great! You have selected the {workout_names[user_input-1]} muscle group.\n")
+#grab the exercises for the user_input
         grab_exercises(user_input)
     else:
         print("Invalid input. Please try again.")
@@ -64,9 +65,11 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #if first time or no data, ask for reps   
         reps = []
         weights = []
+#loop through the exercises and ask for reps and weights
         for exercise_name in exercise_names:
             rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
             weight = int(input(f"Enter the weight for {exercise_name} in kg:\n"))
+#append reps and weights to the lists
             reps.append(rep)
             weights.append(weight)
     else:
@@ -74,7 +77,7 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
         reps = [int(rep) + 1 for rep in reps]
         #if weights already set, increment weights to simulate muscle growth
         weights = [int(weight) + int(weight) * 0.05 for weight in weights] # %5 increase in weight
-
+#update the google sheet with the new reps and weights
     update_rep_sheet(column_index, reps)
     update_weight_sheet(column_index, weights)
     return reps, weights
