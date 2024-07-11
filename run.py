@@ -97,7 +97,9 @@ def update_rep_sheet(column_index, reps):
         values_to_update = [[rep] for rep in reps]
     # Update the sheet
         REPETITIONS.update(values_to_update, range_to_update)
-#I learned from this what rowcol_to_a1 does from gspread
+    #I learned from this what rowcol_to_a1 does from gspread
+    #I discovered about the logging module from this page after searching "how to log errors in python"
+    #https://stackoverflow.com/questions/4508849/how-to-log-python-exception
     except GSpreadException as e:
         logging.error(f"Failed to update the Repetitions sheet: {e}")
     except Exception as e:
@@ -115,7 +117,8 @@ def update_weight_sheet(column_index, weights):
         values_to_update = [[weights] for weights in weights]
     # Update the sheet
         WEIGHTS.update(values_to_update, range_to_update)
-        
+    #I discovered about the logging module from this page after searching "how to log errors in python"
+    #https://stackoverflow.com/questions/4508849/how-to-log-python-exception
     except GSpreadException as e:
         logging.error(f"Failed to update the Weights sheet: {e}")
     except Exception as e:
