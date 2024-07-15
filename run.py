@@ -81,9 +81,9 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
     if (current_date - last_updated).days >= 7:
         print("More than a week has passed. Increasing workout intensity!\n")
         #if reps already set, increment reps to simulate muscle growth
-        reps = [int(rep) + 2 for rep in REPETITIONS.col_values(column_index)[1:]]
+        reps = [int(rep) + 2 for rep in REPETITIONS.col_values(column_index)[1:]] # increase in reps
 #if weights already set, increment weights to simulate muscle growth
-        weights = [int(weight) + int(weight) * 0.25 for weight in WEIGHTS.col_values(column_index)[1:]] # %25 increase in weight
+        weights = [int(weight) + int(weight) * 1.25 for weight in WEIGHTS.col_values(column_index)[1:]] #  increase in weight
 #update the google sheet with the new reps and weights
         update_rep_sheet(column_index, reps)
         update_weight_sheet(column_index, weights)
