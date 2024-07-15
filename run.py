@@ -64,6 +64,15 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #Convert the string to a date
     last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d").date() 
     current_data = datetime.date.today()
+    
+    if not last_updated_str:
+        SHEET.worksheet("Repitions").update_acell(last_update_cell, current_data.strftime("%Y-%m-%d"))
+    
+    
+    
+    
+    
+    
 #Check if the last update was more than a week ago
     if (current_data - last_updated).days >= 7:
         print("It's been a week of working out! Let's increase the intensity!\n")
