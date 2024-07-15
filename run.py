@@ -79,13 +79,13 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
                 weights.append(weight)
         else:
         #if reps already set, increment reps to simulate muscle growth
-            reps = [int(rep) + 1 for rep in reps]
+            reps = [int(rep) + 2 for rep in REPETITIONS.col_values(column_index)[1:]]
         #if weights already set, increment weights to simulate muscle growth
-            weights = [int(weight) + int(weight) * 0.05 for weight in weights] # %5 increase in weight
+            weights = [int(weight) + int(weight) * 0.25 for weight in WEIGHTS.col_values(column_index)[1:]] # %25 increase in weight
 #update the google sheet with the new reps and weights
         update_rep_sheet(column_index, reps)
         update_weight_sheet(column_index, weights)
-        
+        REPETITIONS.update_acell(last_update_cell, current_data.strftime("%Y-%m-%d"))
             
             
 #I asked microsoft co pilot for help with this function, it suggested the following code (had to refactor as code did not fully work)
