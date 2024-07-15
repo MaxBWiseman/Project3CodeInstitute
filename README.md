@@ -1,7 +1,12 @@
 # The Python Fitness Console
 ![Flexing muscle emoji](assets/images/muscle.jpeg)
 ***
-The Python Fitness Console is for every gym lover who like to track there progress and have a interactive console that increases repititons and weights set by the user automatically every week inline with muslce growth. The program works by understanding if the user had already used one of the 5 muslce groups before, if its the first time the program will ask the user what are the desired starting weights and repitions they would like, and then saves this information in a google sheet. When a week has passed and the program detects this with "datetime" the reps and weights are incremented.
+The Python Fitness Console is for every gym lover who like to track there progress and have a interactive console that increases repititons and weights set by the user automatically every week inline with muslce growth. The program works by understanding if the user had already used one of the 5 muslce groups before, if its the first time the program will ask the user what are their desired starting weights and repetitions they would like, and then saves this information in a google sheet. When a week has passed and the program detects this with "datetime" the reps and weights are incremented.
+
+This is the *[Live version of my project](https://pythonfitnessconsole-3375f331b895.herokuapp.com/)*.
+
+## Features
+***
 
 Included workouts:
 
@@ -35,5 +40,13 @@ Included workouts:
     3. Leg Curls
     4. Calf Raises
     5. Leg Press
+
+#### Walkthrough
+
+![Python Fitness Console Startup screen asking user what muscle group they would like to choose](assets/images/pfcss1.png)
+
+1. Asks the user what muscle group they would like to train today, chosen by entering the corresponding index number
+
+
 
 
