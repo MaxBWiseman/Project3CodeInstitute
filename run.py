@@ -80,6 +80,7 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #get reps and weights without updating sheet
         reps = [int(rep) for rep in REPETITIONS.col_values(column_index)[1:]]
         weights = [int(weight) for weight in WEIGHTS.col_values(column_index)[1:]]
+#Check if the reps are empty, less than the number of exercises or last updated more than a week ago
     if not REPETITIONS.col_values(column_index)[1:] or len(REPETITIONS.col_values(column_index)[1:]) < number_of_exercises or (current_date - last_updated).days >= 7:
         print("It's time to update your workout intensity or set up your initial workout plan!\n")
 #loop through the exercises and ask for reps and weights

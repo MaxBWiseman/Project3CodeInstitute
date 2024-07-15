@@ -1,32 +1,39 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The Python Fitness Console
+![Flexing muscle emoji](assets/images/muscle.jpeg)
+***
+The Python Fitness Console is for every gym lover who like to track there progress and have a interactive console that increases repititons and weights set by the user automatically every week inline with muslce growth. The program works by understanding if the user had already used one of the 5 muslce groups before, if its the first time the program will ask the user what are the desired starting weights and repitions they would like, and then saves this information in a google sheet. When a week has passed and the program detects this with "datetime" the reps and weights are incremented.
 
-Welcome,
+Included workouts:
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+1. Back
+    1. Rear Delt Flys
+    2. Lat Pulldowns
+    3. Seated Rows
+    4. Assisted Pull-Up
+    5. Back Extension
+2. Arms
+    1. Bicep Curls
+    2. Seated Dips
+    3. Rope Pulldowns
+    4. Rope Pullups
+    5. Tricep Extension
+3. Chest
+    1. Chest Press
+    2. Chest Flys(high)
+    3. Seated Dips
+    4. Chest Flys(low)
+    5. Pec Deck
+4. Shoulders
+    1. Shoulder Press
+    2. Lateral Raise
+    3. Front Raise
+    4. Rear Delt Row
+    5. Arnold Press
+5. Legs
+    1. Squat Rack
+    2. Leg Extensions
+    3. Leg Curls
+    4. Calf Raises
+    5. Leg Press
 
-## Reminders
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
