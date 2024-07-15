@@ -47,6 +47,9 @@ Included workouts:
 
 1. Asks the user what muscle group they would like to train today, chosen by entering the corresponding index number
 
+2. Sets the current date in the background and saves it inside G16 in Repetitions in the google sheet
+
+![Python Fitness Console asking the user for desired weights and repeitions](assets/images/pfcss1.png)
 
 
 
