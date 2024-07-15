@@ -61,6 +61,9 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
     last_update_cell = 'G16'
 #Grab the last updated date from the google sheet
     last_updated_str = SHEET.worksheet("Repetitions").acell(last_update_cell).value
+#Adjust current_date for testing, checking if the weights and reps are being increased when a week has passed with this code-
+#datetime.datetime.strptime("2024-07-22", "%Y-%m-%d").date()
+#Adjust the inner date to test the code    
     current_date = datetime.date.today()
     
 #If the date is empty, update the google sheet with the current date
@@ -75,32 +78,33 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
     weights = [int(weight) for weight in WEIGHTS.col_values(column_index)[1:]]
     
 #Check if the last update was more than a week ago or first time for muscle group
-    if (current_date - last_updated).days < 7 and reps and weights:
-        print("Less than a week has passed since last workout. Keep up the same intensity!\n")
-    else:
-#Check if the reps are empty, less than the number of exercises or last updated more than a week ago
-        if not REPETITIONS.col_values(column_index)[1:] or len(REPETITIONS.col_values(column_index)[1:]) < number_of_exercises or (current_date - last_updated).days >= 7:
-            print("It's time to update your workout intensity or set up your initial workout plan!\n")
-#loop through the exercises and ask for reps and weights
-            for exercise_name in exercise_names:
-                rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
-                weight = int(input(f"Enter the weight for {exercise_name} in kg:\n"))
-#append reps and weights to the lists
-                reps.append(rep)
-                weights.append(weight)
-#update the google sheet with the reps and weights
-            update_rep_sheet(column_index, reps)
-            update_weight_sheet(column_index, weights)
-            REPETITIONS.update_acell(last_update_cell, current_date.strftime("%Y-%m-%d"))
-        else:
-#if reps already set, increment reps to simulate muscle growth
-            reps = [int(rep) + 2 for rep in REPETITIONS.col_values(column_index)[1:]]
+    if (current_date - last_updated).days >= 7:
+        print("More than a week has passed. Increasing workout intensity!\n")
+        #if reps already set, increment reps to simulate muscle growth
+        reps = [int(rep) + 2 for rep in REPETITIONS.col_values(column_index)[1:]]
 #if weights already set, increment weights to simulate muscle growth
-            weights = [int(weight) + int(weight) * 0.25 for weight in WEIGHTS.col_values(column_index)[1:]] # %25 increase in weight
+        weights = [int(weight) + int(weight) * 0.25 for weight in WEIGHTS.col_values(column_index)[1:]] # %25 increase in weight
 #update the google sheet with the new reps and weights
-            update_rep_sheet(column_index, reps)
-            update_weight_sheet(column_index, weights)
-            REPETITIONS.update_acell(last_update_cell, current_date.strftime("%Y-%m-%d"))
+        update_rep_sheet(column_index, reps)
+        update_weight_sheet(column_index, weights)
+        REPETITIONS.update_acell(last_update_cell, current_date.strftime("%Y-%m-%d"))
+    elif not reps or len(reps) < number_of_exercises:
+#Check if the reps are empty, less than the number of exercises or last updated more than a week ago
+        print("It's time to update your workout intensity or set up your initial workout plan!\n")
+#loop through the exercises and ask for reps and weights
+        for exercise_name in exercise_names:
+            rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
+            weight = int(input(f"Enter the weight for {exercise_name} in kg:\n"))
+#append reps and weights to the lists
+            reps.append(rep)
+            weights.append(weight)
+#update the google sheet with the reps and weights
+        update_rep_sheet(column_index, reps)
+        update_weight_sheet(column_index, weights)
+        REPETITIONS.update_acell(last_update_cell, current_date.strftime("%Y-%m-%d"))
+    else:
+        print("Less than a week has passsed. Your workout intensity is up to date!\n")
+
     
     return reps, weights
             

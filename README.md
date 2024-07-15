@@ -45,11 +45,21 @@ Included workouts:
 
 ![Python Fitness Console Startup screen asking user what muscle group they would like to choose](assets/images/pfcss1.png)
 
-1. Asks the user what muscle group they would like to train today, chosen by entering the corresponding index number
+ Asks the user what muscle group they would like to train today, chosen by entering the corresponding index number.
 
-2. Sets the current date in the background and saves it inside G16 in Repetitions in the google sheet
+ Sets the current date in the background and saves it inside G16 in Repetitions in the google sheet.
 
-![Python Fitness Console asking the user for desired weights and repeitions](assets/images/pfcss1.png)
+![Python Fitness Console asking the user for desired weights and repetitions](assets/images/pfcss2.png)
+
+![Python Fitness Console asking the user for desired weights and repetitions whilst iterating](assets/images/pfcss3.png)
+
+ The console checks the linked google sheet wether or not the user has selected this muscle group before, if not it asks the user for weight and rep inputs.
+
+![Python Fitness Console showing the user there selected workouts](assets/images/pfcss4.png)
+
+ If the user has already selected the muscle group before and selected there desired reps and weights, the program will check wether or not a week has elapsed in time, if true then weights and reps are increased slowly automatically inline with muscle growth.
+
+ If not true then the program lets the user know and shows them their previously selected inputs.
 
 
 
