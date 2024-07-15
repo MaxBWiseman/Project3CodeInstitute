@@ -61,24 +61,22 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
     last_update_cell = 'G2'
 #Grab the last updated date from the google sheet
     last_updated_str = SHEET.worksheet("Repetitions").acell(last_update_cell).value
-#Convert the string to a date
-    last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d").date() 
-    current_data = datetime.date.today()
+    current_date = datetime.date.today()
     
+#If the date is empty, update the google sheet with the current date
     if not last_updated_str:
-        SHEET.worksheet("Repitions").update_acell(last_update_cell, current_data.strftime("%Y-%m-%d"))
+        SHEET.worksheet("Repetitions").update_acell(last_update_cell, current_date.strftime("%Y-%m-%d"))
+        last_updated = current_date
+    else:
+        #string to date
+        last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d").date()
     
-    
-    
-    
-    
+    reps = []
+    weights = []
     
 #Check if the last update was more than a week ago
-    if (current_data - last_updated).days >= 7:
+    if (current_date - last_updated).days >= 7 :
         print("It's been a week of working out! Let's increase the intensity!\n")
-        if not REPETITIONS.col_values(column_index)[1:] or len(REPETITIONS.col_values(column_index)[1:]) < number_of_exercises:
-            reps = []
-            weights = []
 #loop through the exercises and ask for reps and weights
             for exercise_name in exercise_names:
                 rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
@@ -86,6 +84,9 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #append reps and weights to the lists
                 reps.append(rep)
                 weights.append(weight)
+        
+                
+       
         else:
 #if reps already set, increment reps to simulate muscle growth
             reps = [int(rep) + 2 for rep in REPETITIONS.col_values(column_index)[1:]]
@@ -94,7 +95,7 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #update the google sheet with the new reps and weights
         update_rep_sheet(column_index, reps)
         update_weight_sheet(column_index, weights)
-        REPETITIONS.update_acell(last_update_cell, current_data.strftime("%Y-%m-%d"))
+        REPETITIONS.update_acell(last_update_cell, current_date.strftime("%Y-%m-%d"))
     else:
         print("Less than a week has passed since last workout. Keep up the same intensity!\n")
 #get reps and weights without updating sheet
