@@ -57,6 +57,14 @@ def welcome():
         
 
 def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
+    last_update_cell = 'G2' #Cell where data will be stored
+    #grab the last updated date from the google sheet
+    last_updated_str = SHEET.worksheet("Repetitions").acell(last_update_cell).value
+    last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d %H:%M:%S").date()
+    current_data = datetime.date.today()
+
+
+
 #check if already set reps and weights once
     reps = REPETITIONS.col_values(column_index)[1:]
 #Want to refactor this code to also include weights
