@@ -78,15 +78,21 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
                 reps.append(rep)
                 weights.append(weight)
         else:
-        #if reps already set, increment reps to simulate muscle growth
+#if reps already set, increment reps to simulate muscle growth
             reps = [int(rep) + 2 for rep in REPETITIONS.col_values(column_index)[1:]]
-        #if weights already set, increment weights to simulate muscle growth
+#if weights already set, increment weights to simulate muscle growth
             weights = [int(weight) + int(weight) * 0.25 for weight in WEIGHTS.col_values(column_index)[1:]] # %25 increase in weight
 #update the google sheet with the new reps and weights
         update_rep_sheet(column_index, reps)
         update_weight_sheet(column_index, weights)
         REPETITIONS.update_acell(last_update_cell, current_data.strftime("%Y-%m-%d"))
-            
+    else:
+        print("Less than a week has passed since last workout. Keep up the same intensity!\n")
+#get reps and weights without updating sheet
+        reps = [int(rep) for rep in REPETITIONS.col_values(column_index)[1:]]
+        weights = [int(weight) for weight in WEIGHTS.col_values(column_index)[1:]]
+        
+    return reps, weights
             
 #I asked microsoft co pilot for help with this function, it suggested the following code (had to refactor as code did not fully work)
     """
