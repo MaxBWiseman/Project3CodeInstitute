@@ -57,39 +57,35 @@ def welcome():
         
 
 def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
-    last_update_cell = 'G2' #Cell where data will be stored
-    #grab the last updated date from the google sheet
+#Cell where data will be stored
+    last_update_cell = 'G2'
+#Grab the last updated date from the google sheet
     last_updated_str = SHEET.worksheet("Repetitions").acell(last_update_cell).value
-    last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d %H:%M:%S").date()
+#Convert the string to a date
+    last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d %H:%M:%S").date() 
     current_data = datetime.date.today()
-
-
-
-#check if already set reps and weights once
-    reps = REPETITIONS.col_values(column_index)[1:]
-#Want to refactor this code to also include weights
-    weights = WEIGHTS.col_values(column_index)[1:]
-    
-    if not reps or len(reps) < number_of_exercises:
-#if first time or no data, ask for reps   
-        reps = []
-        weights = []
+#Check if the last update was more than a week ago
+    if (current_data - last_updated).days >= 7:
+        print("It's been a week of working out! Let's increase the intensity!\n")
+        if not REPETITIONS.col_values(column_index)[1:] or len(REPETITIONS.col_values(column_index)[1:]) < number_of_exercises:
+            reps = []
+            weights = []
 #loop through the exercises and ask for reps and weights
-        for exercise_name in exercise_names:
-            rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
-            weight = int(input(f"Enter the weight for {exercise_name} in kg:\n"))
+            for exercise_name in exercise_names:
+                rep = int(input(f"Enter the number of repetitions for {exercise_name}:\n"))
+                weight = int(input(f"Enter the weight for {exercise_name} in kg:\n"))
 #append reps and weights to the lists
-            reps.append(rep)
-            weights.append(weight)
-    else:
+                reps.append(rep)
+                weights.append(weight)
+        else:
         #if reps already set, increment reps to simulate muscle growth
-        reps = [int(rep) + 1 for rep in reps]
+            reps = [int(rep) + 1 for rep in reps]
         #if weights already set, increment weights to simulate muscle growth
-        weights = [int(weight) + int(weight) * 0.05 for weight in weights] # %5 increase in weight
+            weights = [int(weight) + int(weight) * 0.05 for weight in weights] # %5 increase in weight
 #update the google sheet with the new reps and weights
-    update_rep_sheet(column_index, reps)
-    update_weight_sheet(column_index, weights)
-    return reps, weights
+        update_rep_sheet(column_index, reps)
+        update_weight_sheet(column_index, weights)
+        
             
             
 #I asked microsoft co pilot for help with this function, it suggested the following code (had to refactor as code did not fully work)
