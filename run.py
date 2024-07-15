@@ -62,7 +62,7 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #Grab the last updated date from the google sheet
     last_updated_str = SHEET.worksheet("Repetitions").acell(last_update_cell).value
 #Convert the string to a date
-    last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d %H:%M:%S").date() 
+    last_updated = datetime.datetime.strptime(last_updated_str, "%Y-%m-%d").date() 
     current_data = datetime.date.today()
 #Check if the last update was more than a week ago
     if (current_data - last_updated).days >= 7:
