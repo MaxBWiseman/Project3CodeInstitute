@@ -64,7 +64,7 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #Adjust current_date for testing, checking if the weights and reps are being increased when a week has passed with this code-
 #datetime.datetime.strptime("2024-07-22", "%Y-%m-%d").date()
 #Adjust the inner date to test the code    
-    current_date = datetime.datetime.strptime("2024-07-23", "%Y-%m-%d").date()
+    current_date = datetime.date.today()
     
 #If the date is empty, update the google sheet with the current date
     if not last_updated_str:

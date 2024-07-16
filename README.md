@@ -57,9 +57,11 @@ Included workouts:
 
 ![Python Fitness Console showing the user there selected workouts](assets/images/pfcss4.png)
 
- If the user has already selected the muscle group before and selected there desired reps and weights, the program will check wether or not a week has elapsed in time, if true then weights and reps are increased slowly automatically inline with muscle growth.
+ If the user has already selected the muscle group before and selected there desired reps and weights, the program will check wether or not a week has elapsed in time, if true then weights and reps are increased slowly automatically inline with muscle growth.Seen below.
 
- If not true then the program lets the user know and shows them their previously selected inputs.
+ If not true then the program lets the user know and shows them their previously selected inputs. Seen above.
 
 
+![Python Fitness Console incrementing the weights and reps automatically after a week has elapsed](assets/images/pfcss5.png)
 
+The default setting for incrementing weights is 25%, and the repetitions are increased by 2. A prompt to let the user adjust this is a good idea for a new feature.
