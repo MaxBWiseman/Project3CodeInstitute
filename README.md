@@ -1,5 +1,5 @@
 # The Python Fitness Console
-![Flexing muscle emoji](assets/images/muscle.jpeg)
+![A muscular python](assets/images/editedbuffpython.png)
 ***
 The Python Fitness Console is for every gym lover who like to track there progress and have a interactive console that increases repititons and weights set by the user automatically every week inline with muslce growth. The program works by understanding if the user had already used one of the 5 muslce groups before, if its the first time the program will ask the user what are their desired starting weights and repetitions they would like, and then saves this information in a google sheet. When a week has passed and the program detects this with "datetime" the reps and weights are incremented.
 
