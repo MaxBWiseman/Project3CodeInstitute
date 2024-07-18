@@ -65,3 +65,5 @@ Included workouts:
 ![Python Fitness Console incrementing the weights and reps automatically after a week has elapsed](assets/images/pfcss5.png)
 
 The default setting for incrementing weights is 25%, and the repetitions are increased by 2. A prompt to let the user adjust this is a good idea for a new feature.
+
+
