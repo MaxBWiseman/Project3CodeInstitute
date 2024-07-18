@@ -5,6 +5,9 @@ The Python Fitness Console is for every gym lover who like to track there progre
 
 This is the *[Live version of my project](https://pythonfitnessconsole-3375f331b895.herokuapp.com/)*.
 
+
+To be able to use this project to the best of its ability you must create your own Google Sheet with Google Cloud. I believe this project will cause issues if more than one person uses the same google sheet at the same time, i have been unable to test this as it seems a likely issue, <INSERT VIDEO/INSTRUCTION HOW TO SET UP GOOGLESHEET FOR THIS PROJECT>
+
 ## Features
 ***
 
