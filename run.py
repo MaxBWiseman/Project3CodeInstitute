@@ -36,7 +36,7 @@ def grab_exercises(data):
         for exercise, rep, weight in zip(exercises, repetitions, weights):
             print(f"{exercise} - {rep} repetitions - {weight} kg\n")
         # Message to the user after displaying the exercises
-        print("Please click run program again when you start another session, your choices if picked before will be remembered and incremented slowly over the course of a week.")
+        print("Please click run program again when you want to start another session,\n your choices if picked before will be remembered and incremented slowly\n over the course of a week.")
     except ValueError as e:
         print(f"Error: {e}")
 
