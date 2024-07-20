@@ -22,34 +22,42 @@ REPETITIONS = SHEET.worksheet("Repetitions")
 WEIGHTS = SHEET.worksheet("Weights")
 
 def grab_exercises(data):
-#using data to grab the correct exercises from the google sheet
-#skips the first row as it is the title
-    exercises = WORKOUTS.col_values(data)[1:]
-    print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
-#using the get_repetitions function to grab the repetitions for the exercises
-    repetitions, weights = get_repetitions_weights(data, len(exercises), exercises)
-#using the zip function to combine the exercises and repetitions into a single list
-    for exercise, rep, weight in zip(exercises, repetitions, weights):
-        print(f"{exercise} - {rep} repetitions - {weight} kg\n")
-    
+    #using data to grab the correct exercises from the google sheet
+    #skips the first row as it is the title
+    try:
+        data = int(data)  # Ensure data is an integer
+        if not 1 <= data <= WORKOUTS.col_count:  # Assuming WORKOUTS.col_count gives the number of columns
+            raise ValueError("Invalid column index.")
+        exercises = WORKOUTS.col_values(data)[1:]
+        print(f"Exercises for {WORKOUTS.cell(1, data).value}:\n")
+        #using the get_repetitions function to grab the repetitions for the exercises
+        repetitions, weights = get_repetitions_weights(data, len(exercises), exercises)
+        #using the zip function to combine the exercises and repetitions into a single list
+        for exercise, rep, weight in zip(exercises, repetitions, weights):
+            print(f"{exercise} - {rep} repetitions - {weight} kg\n")
+    except ValueError as e:
+        print(f"Error: {e}")
+
 def welcome():
-#Grab the workout names from the google sheet and store them in a variable
-    workout_names = WORKOUTS.row_values(1)
-    print("Welcome to the Python Fitness Console!\n")
-    print("Please select a muscle group from the options below:\n")
-# show workout options from google sheets, enumerate function is used to show the index of the list
-    for i, workout in enumerate(workout_names, start=1):
-        print(f"{i}. {workout}")
-#Obtain user disision
-    user_input = int(input("Enter the number of the muscle group you would like to do:\n "))
-#this line checks the user_input is within the range of the workout_names list, valid range is 1 to the length of the list
-    if 1 <= user_input <= len(workout_names):
-        print(f"Great! You have selected the {workout_names[user_input-1]} muscle group.\n")
-#grab the exercises for the user_input
-        grab_exercises(user_input)
-    else:
-        print("Invalid input. Please try again.")
-        
+    try:  # Correctly indented try block
+        workout_names = WORKOUTS.row_values(1)
+        print("Welcome to the Python Fitness Console!\n")
+        print("Please select a muscle group from the options below:\n")
+        # Show workout options from Google Sheets, enumerate function is used to show the index of the list
+        for i, workout in enumerate(workout_names, start=1):
+            print(f"{i}. {workout}")
+        # Obtain user decision
+        user_input = int(input("Enter the number of the muscle group you would like to do:\n "))
+        # This line checks the user_input is within the range of the workout_names list, valid range is 1 to the length of the list
+        if 1 <= user_input <= len(workout_names):
+            print(f"Great! You have selected the {workout_names[user_input-1]} muscle group.\n")
+            # Grab the exercises for the user_input
+            grab_exercises(user_input)
+        else:
+            print("Invalid input. Please try again.")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+            
 def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #Cell where data will be stored
     last_update_cell = 'G16'
