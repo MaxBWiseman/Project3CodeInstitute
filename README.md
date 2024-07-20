@@ -6,8 +6,7 @@ The Python Fitness Console is for every gym lover who like to track there progre
 This is the *[Live version of my project](https://pythonfitnessconsole-3375f331b895.herokuapp.com/)*.
 
 
-To be able to use this project to the best of its ability you must create your own Google Sheet with Google Cloud. I believe this project will cause issues if more than one person uses the same google sheet at the same time, i have been unable to test this as it seems a likely issue, <INSERT VIDEO/INSTRUCTION HOW TO SET UP GOOGLESHEET FOR THIS PROJECT>
-
+To be able to use this project to the best of its ability you must create your own Google Sheet with Google Cloud. I believe this project will cause issues if more than one person uses the same google sheet at the same time, i have been unable to test this as it seems a likely issue, below in the bug reports i explain a little how to set the google sheet up yourself.
 ## Features
 ***
 
@@ -75,5 +74,12 @@ The default setting for incrementing weights is 25%, and the repetitions are inc
 ![alt text](assets/images/pythontest1.png)
 
 ![alt text](assets/images/pythontest2.png)
+
+
+# Known Bugs
+
+1. There is a bug probably when two or more users use this program at the same time, its advised you connect your own google cloud and google sheet with the API librarys "Google Sheets API" and "Google Drive API", also you will need to update the creds.json. Here is the google sheet layout to copy - https://docs.google.com/spreadsheets/d/1Qo3rLDswmGEEnGsjFELNruPZzARTTgVvYsKlougB1IQ/edit?usp=sharing
+
+2. There may still be bugs regarding to what characters entered,
 
 
