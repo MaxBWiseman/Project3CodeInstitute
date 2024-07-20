@@ -102,12 +102,12 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
     return reps, weights
             
 #I asked microsoft co pilot for help with this function, it suggested the following code (had to refactor as code did not fully work)
-    """
+"""
     issue was how the range_to_update string is constructed, it seems that REPETITIONS.
     title might already include the sheet name and appending it again with ! causes the
     malformed string, also there was a update to the gspread "update()" function where i
     had to swap around my "range_to_update" and "values_to_update" variables on line 88
-    """
+"""
 def update_rep_sheet(column_index, reps):
     try:
     #Convert column index to corresponding A1 notation column letter

@@ -70,3 +70,10 @@ Included workouts:
 The default setting for incrementing weights is 25%, and the repetitions are increased by 2. A prompt to let the user adjust this is a good idea for a new feature.
 
 
+# Testing
+
+![alt text](assets/images/pythontest1.png)
+
+![alt text](assets/images/pythontest2.png)
+
+
