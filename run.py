@@ -21,11 +21,6 @@ WORKOUTS = SHEET.worksheet("Workouts")
 REPETITIONS = SHEET.worksheet("Repetitions")
 WEIGHTS = SHEET.worksheet("Weights")
 
-
-
-
-
-
 def grab_exercises(data):
 #using data to grab the correct exercises from the google sheet
 #skips the first row as it is the title
@@ -37,7 +32,6 @@ def grab_exercises(data):
     for exercise, rep, weight in zip(exercises, repetitions, weights):
         print(f"{exercise} - {rep} repetitions - {weight} kg\n")
     
-
 def welcome():
 #Grab the workout names from the google sheet and store them in a variable
     workout_names = WORKOUTS.row_values(1)
@@ -56,7 +50,6 @@ def welcome():
     else:
         print("Invalid input. Please try again.")
         
-
 def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
 #Cell where data will be stored
     last_update_cell = 'G16'
@@ -106,7 +99,6 @@ def get_repetitions_weights(column_index, number_of_exercises, exercise_names):
     else:
         print("Less than a week has passsed. Your workout intensity is up to date!\n")
 
-    
     return reps, weights
             
 #I asked microsoft co pilot for help with this function, it suggested the following code (had to refactor as code did not fully work)
@@ -134,7 +126,6 @@ def update_rep_sheet(column_index, reps):
     except Exception as e:
         logging.error(f"An error occurred whilst updating: {e}")
     
-
 #copied last function and changed slighty to update the weights sheet instead
 def update_weight_sheet(column_index, weights):
     try:
@@ -153,19 +144,6 @@ def update_weight_sheet(column_index, weights):
     except Exception as e:
         logging.error(f"An error occurred whilst updating: {e}")
         
-
-
-
-
-
-
-
-
-
-
-
-
-
 #My code wouldent start in console, after reasearch i found that my code doesnt automatically execute because the call is at global level.
 #I then reasearched different ways to fix this problem and found this video https://www.youtube.com/watch?v=g_wlZ9IhbTs - at 2:37 he explains how to fix this problem
 if __name__ == "__main__":
